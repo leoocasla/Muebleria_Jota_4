@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import { useAuth } from '../../context/AuthContext'; 
 import { useCart } from '../../context/CartContext'; 
@@ -8,6 +8,12 @@ import LogoutButton from '../LogoutButton';
 const Navbar = () => {
   const { isAuthenticated, user } = useAuth();
   const { getCartCount } = useCart();
+  const navigate = useNavigate();
+
+  const handleCartClick = () => {
+    const destination = getCartCount() > 0 ? "/checkout" : "/productos";
+    navigate(destination);
+  };
 
   return (
     <header className="navbar-header">
@@ -17,7 +23,7 @@ const Navbar = () => {
         </div>
         <nav className="navbar-nav">
           <Link to="/productos">Catálogo</Link>
-          <Link to="/admin/crear-producto">Crear Producto</Link>
+          <Link to="/admin/crear-producto">Crear Producto</Link> 
           
           {isAuthenticated ? (
             <>
@@ -31,7 +37,12 @@ const Navbar = () => {
             </>
           )}
         </nav>
-        <div className="navbar-cart">
+        
+        <div 
+          className="navbar-cart" 
+          onClick={handleCartClick}
+          style={{ cursor: 'pointer' }} 
+        >
           <span>🛒 Carrito ({getCartCount()})</span> 
         </div>
       </div>

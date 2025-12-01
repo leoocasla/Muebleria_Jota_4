@@ -39,6 +39,27 @@
   color: var(--color-siena-tostado);
 }
 
+.navbar-cart {
+  display: flex; 
+  align-items: center;
+  gap: 0.5rem;
+
+  padding: 0.5rem 0.5rem; 
+  border-radius: 4px;
+  cursor: pointer; 
+  text-decoration: none; 
+  color: var(--color-texto-principal);
+  
+  position: relative; 
+  z-index: 100;
+  
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar-cart:hover {
+  color: var(--color-siena-tostado);
+}
+
 .navbar-cart span {
   font-family: var(--font-primaria);
   font-weight: 500;
